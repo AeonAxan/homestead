@@ -13,9 +13,8 @@ class Homestead
     config.ssh.forward_agent = true
 
     # Configure The Box
-    config.vm.define settings["name"] ||= "homestead-56"
-    config.vm.box = settings["box"] ||= "laravel/homestead"
-    config.vm.box_version = settings["version"] ||= "= 0.3.3"
+    config.vm.define settings["name"] ||= "azaan-homestead"
+    config.vm.box = settings["box"] ||= "azaan/homestead"
     config.vm.hostname = settings["hostname"] ||= "homestead"
 
     # Configure A Private Network IP

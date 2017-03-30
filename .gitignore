@@ -1,3 +1,6 @@
 /vendor
 /.vagrant
 .idea
+conf/
+package.box
+*~

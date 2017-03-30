@@ -2,6 +2,7 @@
 ip: "192.168.10.10"
 memory: 2048
 cpus: 1
+hostname: homestead
 provider: virtualbox
 
 authorize: ~/.ssh/id_rsa.pub
@@ -10,12 +11,13 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: ~/Code
-      to: /home/vagrant/Code
+    - map: "/home/azaan/homestead"
+      to: "/home/vagrant/homestead"
 
 sites:
     - map: homestead.app
-      to: /home/vagrant/Code/Laravel/public
+      to: "/home/vagrant/homestead/public"
+      php: 5.6
 
 databases:
     - homestead

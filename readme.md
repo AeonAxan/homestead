@@ -1,18 +1,32 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-homestead.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/homestead"><img src="https://travis-ci.org/laravel/homestead.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/homestead"><img src="https://poser.pugx.org/laravel/homestead/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/homestead"><img src="https://poser.pugx.org/laravel/homestead/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/homestead"><img src="https://poser.pugx.org/laravel/homestead/license.svg" alt="License"></a>
-</p>
-
 ## Introduction
 
-This is a php 5.6 fork of the original homestead.
+This is a fork of original Laravel homestead that allows you to specify the PHP version per site.
 
-Laravel Homestead is an official, pre-packaged Vagrant box that provides you a wonderful development environment without requiring you to install PHP, a web server, and any other server software on your local machine. No more worrying about messing up your operating system! Vagrant boxes are completely disposable. If something goes wrong, you can destroy and re-create the box in minutes!
+## Installation
 
-Homestead runs on any Windows, Mac, or Linux system, and includes the Nginx web server, PHP 5.6, MySQL, Postgres, Redis, Memcached, Node, and all of the other goodies you need to develop amazing Laravel applications.
+Get the box and add it to vagrant
+```
+vagrant box add azaan/homestead file:///home/azaan/package.box
+```
 
-Official documentation [is located here](http://laravel.com/docs/homestead).
+Clone the repo and init
+```
+git clone https://github.com/aeonaxan/homestead
+cd homestead
+./init.sh
+```
+
+This will create a `conf` folder with the homestead config. Edit the file `conf/Homestead.yaml` to add your sites, etc.
+
+Start the box from the cloned homestead folder
+```
+vagrant up
+```
+
+You can use the values `5.5` `5.6` and `7.0` for the php versions in the `Homestead.yaml` file
+
+
+
+
