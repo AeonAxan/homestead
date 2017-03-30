@@ -173,9 +173,21 @@ class Homestead
         end
 
         config.vm.provision "shell" do |s|
+
+          php = site["php"] ||= '7.0'
+          if ! ['7.0', '5.6', '5.5'].include? php.to_s
+            raise "Invalid php version. " + php.to_s + " Must be one of 7.0, 5.6, 5.5"
+          end
+
+          if php.to_s == '5.5'
+            php = '/var/run/php5-fpm.sock'
+          else
+            php = '/var/run/php/php' + php.to_s + '-fpm.sock'
+          end
+
           s.name = "Creating Site: " + site["map"]
           s.path = scriptDir + "/serve-#{type}.sh"
-          s.args = [site["map"], site["to"], site["port"] ||= "80", site["ssl"] ||= "443"]
+          s.args = [site["map"], site["to"], site["port"] ||= "80", site["ssl"] ||= "443", php]
         end
 
         # Configure The Cron Schedule
@@ -198,7 +210,7 @@ class Homestead
 
     config.vm.provision "shell" do |s|
       s.name = "Restarting Nginx"
-      s.inline = "sudo service nginx restart; sudo service php5-fpm restart"
+      s.inline = "sudo service nginx restart; sudo service php5-fpm restart; sudo service php5.6-fpm restart; sudo service php7.0-fpm restart"
     end
 
     # Install MariaDB If Necessary
